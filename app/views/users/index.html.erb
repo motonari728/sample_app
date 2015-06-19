@@ -1,0 +1,10 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+	<%= render @users %> <!-- controllerで作成した@usersインスタンスがここで使える -->
+</ul>	<!-- views/users/_user.html.erbを自動で列挙 。@users.each do |user|が省略されてる -->
+
+<%= will_paginate %>
