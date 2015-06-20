@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 	before_action :signed_in_user, 	only: [:index, :edit, :update, :destroy]
+	before_action :signed_in_user_new, 	only:[:new, :create]
 	before_action :correct_user, 		only: [:edit, :update]
 	before_action :admin_user, 		only: :destroy
 
@@ -60,6 +61,12 @@ class UsersController < ApplicationController
 			unless signed_in?
 				store_location
 				redirect_to signin_url, notice: "Please sign in."
+			end
+		end
+
+		def signed_in_user_new
+			if signed_in?
+				redirect_to root_path, notice: "You already sign in with #{current_user.name}"
 			end
 		end
 

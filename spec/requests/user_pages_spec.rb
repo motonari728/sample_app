@@ -87,7 +87,7 @@ describe "User pages" do
         		fill_in "Name", with:         		"Example User"
         		fill_in "Email", with:        		"user@example.com"
         		fill_in "Password", with:     		"foobar"
-        		fill_in "Confirmation", with: 		"foobar"
+        		fill_in "Confirm Password", with: 		"foobar"
 			end
 
 			it "should create a user" do
@@ -100,8 +100,8 @@ describe "User pages" do
 
 				it { should have_title(user.name)}
 				it { should have_selector('div.alert.alert-success', text: 'Welcome')}
-										it { should have_link('Sign out') }
-							end              
+				it { should have_link('Sign out') }
+			end              
 		end
 	end
 

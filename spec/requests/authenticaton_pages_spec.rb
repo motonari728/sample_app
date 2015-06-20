@@ -4,6 +4,12 @@ describe "Authentication" do #authenticate 証明する
 	
 	subject { page }
 
+	describe "not signin" do
+		before { visit root_path }
+		it { should_not have_link 'Profile' } #リンク先がなくてもaタグの判断に使える
+		it { should_not have_link 'Settings' }
+	end	
+
 	describe "signin" do
 		before { visit signin_path }
 
@@ -89,6 +95,16 @@ describe "Authentication" do #authenticate 証明する
 
 			describe "submitting a PATCH request to the Users#update action" do
 				before { patch :update, id: wrong_user, user:wrong_user }
+				specify { expect(response).to redirect_to(root_path) }
+			end
+
+			describe "submitting a GET request to the Users#new" do
+				before { get :new }
+				specify { expect(response).to redirect_to(root_path) }
+			end
+
+			describe "submitting a PUT request to the Users#create" do
+				before { post :create, user: { name: user.name, email: user.email, password:user.password, password_confirmation: user.password} }
 				specify { expect(response).to redirect_to(root_path) }
 			end
 		end
