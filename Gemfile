@@ -11,8 +11,9 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'rspec-rails'
+  gem 'sqlite3', '1.3.10'
+  gem 'rspec-rails', '2.13.1'
+  gem 'test-unit'
 end
 
 group :test do
@@ -37,7 +38,7 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
-=begin
+=begin   
 source 'https://rubygems.org'
 ruby '2.0.0'
 #ruby-gemset=railstutorial_rails_4_0

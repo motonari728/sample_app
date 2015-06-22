@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@microposts = @user.microposts.paginate(page: params[:page])
 	end
 
 	def create
@@ -57,13 +58,6 @@ class UsersController < ApplicationController
 # filter
 #   Strong Parameters で許可するカラムを指定する。
 		
-		def signed_in_user
-			unless signed_in?
-				store_location
-				redirect_to signin_url, notice: "Please sign in."
-			end
-		end
-
 		def signed_in_user_new
 			if signed_in?
 				redirect_to root_path, notice: "You already sign in with #{current_user.name}"
