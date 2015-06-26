@@ -15,7 +15,7 @@ def sign_in(user, options={})
 end
 
 
-RSpec::Matchers.define :have_error_message do |message|
+RSpec::Matchers.define :have_error_message do |message| # it { should have_error_message('Invalid') }とかける
 	match do |page|
 		expect(page).to have_selector('div.alert.alert-error', text: message)
 	end
