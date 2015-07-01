@@ -25,6 +25,11 @@ module SampleApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.action_dispatch.default_headers = {
+    #'Access-Control-Allow-Credentials' => 'true',
+    'Access-Control-Allow-Origin' => '*',
+    'Access-Control-Request-Method' => '*'
+    }
   end
 end
 
