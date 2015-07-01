@@ -12,6 +12,7 @@ describe RelationshipsController do
 		it "should increment the Relationship count" do
 			expect do
 				xhr :post, :create, relationship: { followed_id: other_user.id } #xhr xmlHTTPrequeset
+				# xhr, HTTPリクエスト, アクション, paramsの内容を指定する。
 			end.to change(Relationship, :count).by(1)
 		end
 

@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
 	has_many :microposts, dependent: :destroy #user.micropostsでアクセス
 
-	has_many :relationships, foreign_key: "follower_id", dependent: :destroy #relationshipsはテーブル名
+	has_many :relationships, foreign_key: "follower_id", dependent: :destroy #has_manyの時は複数形
+	# foreign_key未指定だと、user_idを探す(参照元クラス名_id)
 	has_many :followed_users, through: :relationships, source: :followed
 
 	has_many :reverse_relationships,	foreign_key: "followed_id",
-											class_name: "Relationship", #テーブル名が違うと時は、モデルクラスを指定
+											class_name: "Relationship", #has_manyが違う時は、モデルクラスを指定
 											dependent: :destroy
 	has_many :followers, through: :reverse_relationships, source: :follower #sourceは省略可
 
