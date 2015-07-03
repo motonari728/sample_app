@@ -1,3 +1,20 @@
+<script>
+function install(){
+var url = location.href;
+var manifestUrl = url.substring(0, url.lastIndexOf('/')) + '/manifest.webapp';
+var install = navigator.mozApps.install(manifestUrl);
+install.addEventListener('success', function() {
+    alert('Installed successfully.');
+}, false);
+install.addEventListener('error', function() {
+    alert('Install failed. ' + install.error.name);
+}, false);
+
+};
+</script>
+
+
+
 <% if signed_in? %>
 	<div class="row">
 		<aside class="span4">
@@ -11,6 +28,7 @@
 				<%= render 'shared/micropost_form' %>
 			</section>
 		</aside>
+
 		<div class="span8">
 			<h3>Micropost Feed</h3>
 			<%= render 'shared/feed' %>
@@ -31,3 +49,4 @@
 
 	<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
 <% end %>
+		<button onclick="install()">インストール</button>
